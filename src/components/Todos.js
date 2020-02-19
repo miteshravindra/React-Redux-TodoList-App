@@ -8,7 +8,7 @@ export class Todos extends Component {
     }
 
     render() {
-        let todoItems = this.props.todos ? this.props.todos.map(todo =>
+        let todoItems = this.props.todos.length>0 ? this.props.todos.map(todo =>
             <li className="list-group-item" key={todo.id} onClick={()=>this.handleClick(todo.id)}>{todo.todo}</li>
         ): 'No todos left'
         return (
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        deleteTodos:(id)=> dispatch({type:'DELETE_TODOS',id})
+        deleteTodos:(id)=> dispatch({type:'DELETE_TODO',id})
     }
 
 }

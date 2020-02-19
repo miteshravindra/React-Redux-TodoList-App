@@ -5,10 +5,26 @@ const initialState = {
     ]
 }
 
-const reducer = (state = initialState,action) => {
-    console.log(action);
+const reducer = (state = initialState, action) => {
+    console.log(action)
+    switch (action.type) {
+        case 'DELETE_TODO':
+            return {
+                ...state,
+                todos:state.todos.filter(todo => todo.id !== action.id)
+            }
 
-    return state;
+        case 'ADD_TODO':
+            return{
+                ...state,
+                // todos: state.todos.push({id:state.todos.length,todo:action.todo})
+                todos: [...state.todos,{id:state.todos.length,todo:action.todo}]
+            }
+
+
+        default:
+            return state;
+    }
 
 }
 
