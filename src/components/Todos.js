@@ -1,19 +1,37 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 export class Todos extends Component {
+
+    handleClick = (id) =>{
+       this.props.deleteTodos(id);
+    }
+
     render() {
+        let todoItems = this.props.todos ? this.props.todos.map(todo =>
+            <li className="list-group-item" key={todo.id} onClick={()=>this.handleClick(todo.id)}>{todo.todo}</li>
+        ): 'No todos left'
         return (
             <div>
                 <ul className="list-group">
-                    <li className="list-group-item">Cras justo odio</li>
-                    <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Morbi leo risus</li>
-                    <li className="list-group-item">Porta ac consectetur ac</li>
-                    <li className="list-group-item">Vestibulum at eros</li>
+                    {todoItems}
                 </ul>
             </div>
         )
     }
 }
 
-export default Todos
+const mapStateToProps = (state) => {
+    return {
+        todos: state.todos
+    }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        deleteTodos:(id)=> dispatch({type:'DELETE_TODOS',id})
+    }
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Todos)
