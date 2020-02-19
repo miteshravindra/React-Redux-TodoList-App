@@ -6,7 +6,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case 'DELETE_TODO':
             return {
@@ -17,8 +16,7 @@ const reducer = (state = initialState, action) => {
         case 'ADD_TODO':
             return{
                 ...state,
-                // todos: state.todos.push({id:state.todos.length,todo:action.todo})
-                todos: [...state.todos,{id:state.todos.length,todo:action.todo}]
+                todos: [...state.todos,{id:state.todos.length+1,todo:action.todo}]
             }
 
 

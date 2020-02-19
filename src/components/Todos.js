@@ -9,7 +9,7 @@ export class Todos extends Component {
 
     render() {
         let todoItems = this.props.todos.length>0 ? this.props.todos.map(todo =>
-            <li className="list-group-item" key={todo.id} onClick={()=>this.handleClick(todo.id)}>{todo.todo}</li>
+            <li className="list-group-item list-group-item-primary" key={todo.id} onClick={()=>this.handleClick(todo.id)}>{todo.todo}</li>
         ): 'No todos left'
         return (
             <div>
